@@ -1,0 +1,79 @@
+.confirm-container {
+  position: fixed; /* Ensures modal stays above everything */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;  /* Full width */
+  height: 100vh; /* Full height */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1; /* Ensures it's on top */
+}
+
+.confirm-wrapper {
+  background-color: white;
+  padding: 20px 50px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.warning-icon {
+  font-size: 30px;
+}
+
+.warning-text {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.warning-text h2 {
+  margin: 0;
+  margin-top: 10px;
+}
+
+.warning-text p {
+  margin: 10px 10px;
+  color: rgb(137, 137, 137);
+}
+
+.warning-button {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: flex-end; */
+  gap: 15px;
+  padding: 10px;
+}
+
+.cancel-button,
+.delete-button {
+  padding: 8px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease-in-out;
+}
+
+.cancel-button {
+  background-color: rgba(140, 140, 140, 0.2);
+  color: rgb(50, 50, 50);
+}
+
+.cancel-button:hover {
+  background-color: black;
+  color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.delete-button {
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+}
+
+.delete-button:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}

@@ -3,6 +3,7 @@ import { closestCorners, DndContext } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import Column from "./Components/Column/Column";
 import Input from "./Components/Input/Input";
+import ConfirmationModal from "./Components/confirmationModal/ConfirmationModal";
 import "./App.css";
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
   ]);
 
   const [error, setError] = useState("");
+  const [warning, setWarning] = useState(false);
+  const [taskToDelete, setTaskToDelete] = useState(null);
 
   const addTasks = (title) => {
     if (title.length < 30) {
@@ -32,9 +35,21 @@ function App() {
   };
 
   const removeTask = (id) => {
+    setWarning(true);
+    setTaskToDelete(id);
+  };
+
+  const deleteTask = () => {
     setTasks((prevTasks) => {
-      return prevTasks.filter((task) => task.id !== id);
+      return prevTasks.filter((task) => task.id !== taskToDelete);
     });
+    setWarning(false);
+    setTaskToDelete(null);
+  };
+
+  const cancelRemove = () => {
+    setWarning(false);
+    setTaskToDelete(null);
   };
 
   const getTaskPos = (id) => tasks.findIndex((task) => task.id === id);
@@ -53,12 +68,17 @@ function App() {
 
   return (
     <div className="app">
+      <ConfirmationModal
+        warning={warning}
+        deleteTask={deleteTask}
+        cancelRemove={cancelRemove}
+      />
       <div className="wrapper">
         <div className="header">
           <h1>TO-DO LIST</h1>
-          <img className="icon" src="./icon.png"></img>
+          <img className="icon" src="./icon.png" alt="To-Do list icon"></img>
         </div>
-        <Input onSubmit={addTasks} errorMessage={error}/>
+        <Input onSubmit={addTasks} errorMessage={error} />
         <DndContext
           onDragEnd={handleDragEnd}
           collisionDetection={closestCorners}
