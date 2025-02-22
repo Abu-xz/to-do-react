@@ -1,0 +1,53 @@
+.task {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.016);
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  touch-action: none;
+  cursor: grab;
+}
+
+.task-items {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.check-box {
+  height: 30px;
+  width: 30px;
+  user-select: "none";
+}
+
+.task-options {
+  display: flex;
+  gap: 20px;
+}
+
+.task-button {
+  border-radius: 50%;
+  background-color: white;
+  border: none;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.edit-input{
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight:500;
+    max-width: 100%;
+     
+    outline-color: rgb(255, 207, 49);
+    border-width: 3px;
+    border-color: rgba(187, 187, 187, 0.491);
+}

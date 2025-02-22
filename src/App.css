@@ -1,0 +1,58 @@
+body{
+    background: linear-gradient(135deg,#3c0c6c,#6a0d86);
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; 
+}
+
+.wrapper{
+    overflow: hidden; /* Prevents items from being dragged outside */
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    height: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%; /* Use percentage instead of fixed width */
+    max-width: 500px;
+    padding: 40px 10px;
+    gap: 40px;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon{
+    width: 47px;
+    height: 47px;
+    align-items: center;
+    text-align: center;
+}
+
+
+/* Mobile Optimization */
+@media (max-width: 600px) {
+    .wrapper {
+        padding: 20px 5px;
+    }
+
+    .header {
+        text-align: center;
+    }
+
+    .icon {
+        width: 35px;
+        height: 35px;
+    }
+}
