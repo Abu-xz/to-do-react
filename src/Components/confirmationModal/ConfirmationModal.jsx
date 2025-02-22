@@ -16,7 +16,7 @@ function ConfirmationModal({ warning, cancelRemove, deleteTask }) {
           </div>
           <div className="warning-text">
             <h2>Delete Task</h2>
-            <p>Are you sure to remove task?</p>
+            <p>Are you sure you want to remove the task?</p>
           </div>
           <div className="warning-button">
             <button className="cancel-button" onClick={cancelRemove}>
