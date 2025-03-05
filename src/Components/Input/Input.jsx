@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "./Input.css";
-const Input = ({ onSubmit, errorMessage }) => {
+const Input = ({ onSubmit, errorMessage, clearTask }) => {
   const [input, setInput] = useState("");
 
   const handleSubmit = () => {
@@ -9,6 +9,8 @@ const Input = ({ onSubmit, errorMessage }) => {
     onSubmit(input);
     setInput("");
   };
+
+
 
   return (
     <div className="container">
@@ -22,15 +24,20 @@ const Input = ({ onSubmit, errorMessage }) => {
         <button onClick={handleSubmit} className="button">
           Add
         </button>
+         <button onClick={clearTask} className="button">
+          clear
+        </button>
       </div>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 };
 
+
 Input.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
+  clearTask: PropTypes.func
 };
 
 export default Input;

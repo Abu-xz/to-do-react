@@ -38,7 +38,7 @@ function Task({ id, title, updateTitle, removeTask }) {
       <div className="task-items">
         <img
           className="check-box"
-          src={isComplete ? "/checked.png" : "/unchecked.png"}
+          src={isComplete ? "/images/checked.png" : "/images/unchecked.png"}
           alt="checkbox"
           style={{ cursor: "pointer" }}
           onPointerDown={toggleCompletion}
