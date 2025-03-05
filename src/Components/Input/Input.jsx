@@ -1,15 +1,16 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "./Input.css";
+
+
 const Input = ({ onSubmit, errorMessage, clearTask }) => {
   const [input, setInput] = useState("");
 
   const handleSubmit = () => {
     if (!input.trim()) return;
-    onSubmit(input);
+    onSubmit(input.trim());
     setInput("");
   };
-
 
 
   return (
@@ -21,10 +22,10 @@ const Input = ({ onSubmit, errorMessage, clearTask }) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <button onClick={handleSubmit} className="button">
+        <button onClick={handleSubmit} className="add-button">
           Add
         </button>
-         <button onClick={clearTask} className="button">
+         <button onClick={clearTask} className="clear-button">
           clear
         </button>
       </div>

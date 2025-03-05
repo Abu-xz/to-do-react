@@ -19,11 +19,20 @@
   max-width: 400px;
 }
 
-.button {
+.add-button {
   border: none;
   border-radius: 10px;
   padding: 10px 15px;
   background-color: rgb(198, 62, 240);
+  color: white;
+  cursor: pointer;
+}
+
+.clear-button {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 15px;
+  background-color: rgb(231, 6, 96);
   color: white;
   cursor: pointer;
 }

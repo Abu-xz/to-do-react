@@ -40,7 +40,7 @@
 .warning-button {
   display: flex;
   flex-direction: row;
-  /* justify-content: flex-end; */
+  justify-content: center;
   gap: 15px;
   padding: 10px;
 }

@@ -7,69 +7,77 @@ import ConfirmationModal from "./Components/confirmationModal/ConfirmationModal"
 import "./App.css";
 
 function App() {
-const [tasks, setTasks] = useState([
-  { id: 1, title: "clean kitchen" },
-  { id: 2, title: "Hit the Gym" },
-  { id: 3, title: "Walk the dog" },
-]);
+  const [tasks, setTasks] = useState([
+    { id: 1, title: "clean the kitchen" },
+    { id: 2, title: "Hit the Gym" },
+    { id: 3, title: "Walk the dog" },
+  ]);
 
-const [error, setError] = useState("");
-const [warning, setWarning] = useState(false);
-const [taskToDelete, setTaskToDelete] = useState(null);
+  const [error, setError] = useState("");
+  const [warning, setWarning] = useState(false);
+  const [taskToDelete, setTaskToDelete] = useState(null);
 
-const addTasks = (title) => {
-  if (title.length < 30) {
-    setTasks((tasks) => [...tasks, { id: tasks.length + 1, title }]);
-    setError("");
-  } else {
-    setError("Task title is too long...");
+  const isDuplicate = (tasks, title) => tasks.some(task => task.title.toLowerCase() === title.toLowerCase()) // This method find duplicate
+
+  const addTasks = (title) => {
+
+    if (isDuplicate(tasks, title)) {
+      setError("Task is already in the list");
+      return;
+    }
+
+    if (title.length < 30) {
+      setTasks((tasks) => [...tasks, { id: tasks.length + 1, title }]);
+      setError("");
+    } else {
+      setError("Task title is too long...");
+    }
+  };
+
+
+  const clearTask = () => {
+    setTasks([]);
   }
-};
 
+  const updateTitle = (id, newTitle) => {
+    setTasks((tasks) => {
+      return tasks.map((task) =>
+        task.id === id ? { ...task, title: newTitle } : task
+      );
+    });
+  };
 
-const clearTask = () => {
-  setTasks([]);
-}
+  const removeTask = (id) => {
+    setWarning(true);
+    setTaskToDelete(id);
+  };
 
-const updateTitle = (id, newTitle) => {
-  setTasks((tasks) => {
-    return tasks.map((task) =>
-      task.id === id ? { ...task, title: newTitle } : task
-    );
-  });
-};
+  const deleteTask = () => {
+    setTasks((prevTasks) => {
+      return prevTasks.filter((task) => task.id !== taskToDelete);
+    });
+    setWarning(false);
+    setTaskToDelete(null);
+  };
 
-const removeTask = (id) => {
-  setWarning(true);
-  setTaskToDelete(id);
-};
+  const cancelRemove = () => {
+    setWarning(false);
+    setTaskToDelete(null);
+  };
 
-const deleteTask = () => {
-  setTasks((prevTasks) => {
-    return prevTasks.filter((task) => task.id !== taskToDelete);
-  });
-  setWarning(false);
-  setTaskToDelete(null);
-};
+  const getTaskPos = (id) => tasks.findIndex((task) => task.id === id);
 
-const cancelRemove = () => {
-  setWarning(false);
-  setTaskToDelete(null);
-};
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
 
-const getTaskPos = (id) => tasks.findIndex((task) => task.id === id);
+    setTasks((tasks) => {
+      const originalPos = getTaskPos(active.id);
+      const newPos = getTaskPos(over.id);
 
-const handleDragEnd = (event) => {
-  const { active, over } = event;
-  if (!over || active.id === over.id) return;
-
-  setTasks((tasks) => {
-    const originalPos = getTaskPos(active.id);
-    const newPos = getTaskPos(over.id);
-
-    return arrayMove(tasks, originalPos, newPos);
-  });
-};
+      return arrayMove(tasks, originalPos, newPos);
+    });
+  };
 
 
 
